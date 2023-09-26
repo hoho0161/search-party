@@ -1,9 +1,11 @@
 package com.ApexParty.searchparty.domain.users;
 
 
+import com.ApexParty.searchparty.controller.dto.UsersJoinRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@DataJpaTest
 class UsersRepositoryTest {
     
     @Autowired
@@ -23,40 +25,32 @@ class UsersRepositoryTest {
     }
 
     @Test
-    public void 유저_저장하기() {
+    public void 유저_저장() {
         //given
-        String name = "테스트이름";
-        String email = "test@email.com";
-
-        usersRepository.save(Users.builder()
-                .name(name)
-                .email(email)
-                .build());
-
+        String name = "name";
+        String email = "email";
+        Users users = new UsersJoinRequestDto(name,email).toEntity();
         //when
-        List<Users> UsersList = usersRepository.findAll();
+        usersRepository.save(users);
 
         //then
-        Users users = UsersList.get(0);
-        assertThat(users.getName()).isEqualTo(name);
-        assertThat(users.getEmail()).isEqualTo(email);
+        List<Users> UsersList = usersRepository.findAll();
+        Users foundusers = UsersList.get(0);
+        assertThat(foundusers.getName()).isEqualTo(name);
+        assertThat(foundusers.getEmail()).isEqualTo(email);
     }
 
 
     @Test
-    public void 유저이름_검색하기() {
+    public void 유저이름_검색() {
         //given
-        String name = "테스트이름";
-        String email = "test@email.com";
-
-        usersRepository.save(Users.builder()
-                .name(name)
-                .email(email)
-                .build());
+        String name = "name";
+        String email = "email";
+        Users users = new UsersJoinRequestDto(name,email).toEntity();
+        usersRepository.save(users);
 
         //when
         Optional<Users> usersOptional = usersRepository.findByName(name);
-
         //then
         assertThat(usersOptional.isPresent()).isTrue();
         Users foundUser = usersOptional.get();
@@ -64,6 +58,9 @@ class UsersRepositoryTest {
         assertThat(foundUser.getEmail()).isEqualTo(email);
 
     }
-    
+
+
+
+
     
 }
