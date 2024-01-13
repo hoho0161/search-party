@@ -1,0 +1,116 @@
+{{>layout/header}}
+
+<nav class="col navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#" style="font-size: 30px">
+            <img src="./img/fav.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+            APEX LEGENDS 파티모집
+        </a>
+
+        <button class="btn btn-primary me-2" type="button">로그인</button>
+    </div>
+</nav>
+<div class="row border px-3 py-3 mb-3 --bs-light" style="border: 5px var(--bs-dark-border-subtle) solid">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col">
+                <label class="fs-4">목록게임</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gameType" id="normal" checked>
+                    <label class="form-check-label" for="normal">
+                        일반게임
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gameType" id="rank" >
+                    <label class="form-check-label" for="rank">
+                        랭크게임
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gameType" id="oneToOne" >
+                    <label class="form-check-label" for="oneToOne">
+                        1 VS 1
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <label class="fs-4">마이크 사용</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mikeCheck" id="yes" checked>
+                    <label class="form-check-label" for="yes">
+                        YES
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mikeCheck" id="no">
+                    <label class="form-check-label" for="no">
+                        NO
+                    </label>
+                </div>
+            </div>
+            <div class="col" style="">
+                <div>
+                    <label class="fs-4">모집티어</label>
+                </div>
+                <select class="form-select" id="selectTier" aria-label="Apex Tier">
+                    <option selected disabled>티어를 선택해주세요</option>
+                    <option value="1">언랭크</option>
+                    <option value="2">아이언</option>
+                    <option value="3">브론즈</option>
+                    <option value="4">실버</option>
+                    <option value="5">골드</option>
+                    <option value="6">플래티넘</option>
+                    <option value="7">다이아</option>
+                    <option value="8">마스터+</option>
+                </select>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="m-2">
+            <button class="btn btn-primary" type="button">검색하기</button>
+        </div>
+        <div class="m-2">
+            <button class="btn btn-outline-primary" type="button">조건 초기화</button>
+        </div>
+    </div>
+
+</div>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">TIME</th>
+            <th scope="col">NAME</th>
+        </tr>
+        </thead>
+        <tbody id = "BoardList">
+        {{#Posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{title}}</td>
+                <td>{{time}}</td>
+                <td>{{users_id}}</td>
+            </tr>
+        {{/Posts}}
+        </tbody>
+    </table>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>
+
+{{>layout/footer}}
