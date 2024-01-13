@@ -1,7 +1,7 @@
 package com.ApexParty.searchparty.domain.boards;
 
 
-import com.ApexParty.searchparty.domain.users.Users;
+import com.ApexParty.searchparty.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,14 +12,10 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Boards {
+public class Posts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name="users_id")
-    private Users users;
 
     @Column(nullable = false)
     private String title;
@@ -40,8 +36,7 @@ public class Boards {
     private int cDmg;
 
     @Builder
-    Boards(Users users, String title,String contents, int cType, int cMike, int cTier, int cDmg) {
-        this.users = users;
+    Posts(String title, String contents, int cType, int cMike, int cTier, int cDmg) {
         this.title = title;
         this.contents = contents;
         this.cType = cType;

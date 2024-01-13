@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@SpringBootTest
 class UsersRepositoryTest {
     
     @Autowired
@@ -28,8 +28,9 @@ class UsersRepositoryTest {
     public void 유저_저장() {
         //given
         String name = "name";
+        String pw = "password";
         String email = "email";
-        Users users = new UsersJoinRequestDto(name,email).toEntity();
+        Users users = new UsersJoinRequestDto(name,pw,email).toEntity();
         //when
         usersRepository.save(users);
 
@@ -37,6 +38,7 @@ class UsersRepositoryTest {
         List<Users> UsersList = usersRepository.findAll();
         Users foundusers = UsersList.get(0);
         assertThat(foundusers.getName()).isEqualTo(name);
+        assertThat(foundusers.getPassword()).isEqualTo(pw);
         assertThat(foundusers.getEmail()).isEqualTo(email);
     }
 
@@ -45,8 +47,9 @@ class UsersRepositoryTest {
     public void 유저이름_검색() {
         //given
         String name = "name";
+        String pw = "password";
         String email = "email";
-        Users users = new UsersJoinRequestDto(name,email).toEntity();
+        Users users = new UsersJoinRequestDto(name,pw,email).toEntity();
         usersRepository.save(users);
 
         //when
@@ -55,6 +58,7 @@ class UsersRepositoryTest {
         assertThat(usersOptional.isPresent()).isTrue();
         Users foundUser = usersOptional.get();
         assertThat(foundUser.getName()).isEqualTo(name);
+        assertThat(foundUser.getPassword()).isEqualTo(pw);
         assertThat(foundUser.getEmail()).isEqualTo(email);
 
     }
