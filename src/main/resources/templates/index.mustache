@@ -11,7 +11,7 @@
         <button class="btn btn-primary me-2" type="button">로그인</button>
     </div>
 </nav>
-<div class="row border px-3 py-3 mb-3 --bs-light" style="border: 5px var(--bs-dark-border-subtle) solid">
+<div class="row border mx-1 my-1 --bs-light" style="border: 5px var(--bs-dark-border-subtle) solid">
     <div class="col-md-10">
         <div class="row">
             <div class="col">
@@ -85,10 +85,10 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">No</th>
-            <th scope="col">TITLE</th>
-            <th scope="col">TIME</th>
-            <th scope="col">NAME</th>
+            <th class="col-1" scope="col">No</th>
+            <th class="col-7" scope="col">TITLE</th>
+            <th class="col-2" scope="col">NAME</th>
+            <th class="col-2" scope="col">TIME</th>
         </tr>
         </thead>
         <tbody id = "BoardList">
@@ -96,8 +96,8 @@
             <tr>
                 <td>{{id}}</td>
                 <td>{{title}}</td>
-                <td>{{time}}</td>
                 <td>{{users_id}}</td>
+                <td>{{time}}</td>
             </tr>
         {{/Posts}}
         </tbody>
