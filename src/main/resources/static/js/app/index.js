@@ -10,6 +10,7 @@ var main = {
     changeTier : function () {
         alert('JS테스트');
     }
+
 };
 
 main.init();
