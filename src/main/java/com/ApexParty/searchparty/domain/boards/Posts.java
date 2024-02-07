@@ -28,36 +28,30 @@ public class Posts extends BaseTimeEntity {
     private String contents;
 
     @Column(nullable = false)
-    private int cType;
+    private String cType;
 
     @Column(nullable = false)
-    private int cMike;
+    private String cMike;
 
     @Column(nullable = false)
-    private int cTier;
+    private String cTier;
 
-    @ColumnDefault("0")
-    private int cDmg;
 
     @Builder
-    public Posts(String title,Users users, String contents, int cType, int cMike, int cTier, int cDmg) {
+    public Posts(String title,Users users, String contents, String cType, String cMike, String cTier) {
         this.title = title;
         this.users = users;
         this.contents = contents;
         this.cType = cType;
         this.cMike = cMike;
         this.cTier = cTier;
-        this.cDmg = cDmg;
     }
 
-    public void update(String title,String contents, int cType, int cMike, int cTier, int cDmg ) {
+    public void update(String title,String contents, String cType, String cMike, String cTier) {
         this.title = title;
         this.contents = contents;
         this.cType = cType;
         this.cMike = cMike;
         this.cTier = cTier;
-        this.cDmg = cDmg;
-
     }
-
 }

@@ -1,0 +1,19 @@
+<nav class="col navbar navbar-expand-lg bg-body-tertiary">
+    <div class="col-md-4">
+
+        <a class="navbar-brand" href="/" style="font-size: 30px">
+            <img src="./img/fav.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+            APEX LEGENDS 파티모집
+        </a>
+    </div>
+    <div class="col-md-3 offset-md-5">
+        {{#userName}}
+            회원이름 : <span id="user">{{userName}}</span>
+            <a href="/logout" class="btn btn-primary me-2" type="button">로그아웃</a>
+        {{/userName}}
+        {{^userName}}
+            <a href="/oauth2/authorization/google" class="btn btn-primary me-2" type="button">로그인</a>
+        {{/userName}}
+            <a href="/posts" class="btn btn-outline-dark" type="button">글쓰기</a>
+    </div>
+</nav>

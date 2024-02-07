@@ -13,6 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @RequiredArgsConstructor
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
@@ -30,9 +31,9 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/css/**"),
                                         new AntPathRequestMatcher("/js/**"),
                                         new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).hasRole(Role.USER.name())
+                                .requestMatchers(new AntPathRequestMatcher("/posts")).hasRole(Role.USER.name())
                                 .anyRequest().authenticated())
-                .logout((logout) -> logout.logoutSuccessUrl("/"))
+                .logout((logout) -> logout.logoutSuccessUrl("/").deleteCookies("SESSION"))
                 .oauth2Login((oauth2Login)->oauth2Login.userInfoEndpoint((userInfoEndpoint)->userInfoEndpoint.userService(customOAuth2UserService)));
         return http.build();
     }

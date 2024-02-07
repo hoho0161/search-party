@@ -10,13 +10,13 @@ public class PostsListResponseDto {
     private Long id;
     private String title;
     private String time;
-    private Long users_id;
+    private String users_name;
 
     public PostsListResponseDto(Posts posts) {
         this.id = posts.getId();
         this.title = posts.getTitle();
         this.time = posts.getCreatedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        this.users_id = posts.getUsers().getId();
+        this.users_name = posts.getUsers().getName();
 
     }
 }
